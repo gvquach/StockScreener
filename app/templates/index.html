@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+    <h1>Stock List</h1>
+    <div class="ui form">
+        <form method="get">
+            <div class="fields">
+                <div class="three wide field">
+                    <select name="filter">
+                        <option value="">None</option>
+                        <option {% if request.query_params.filter == 'all_stocks' %}selected="selected"{% endif %}
+                            value="all_stocks">All Stocks</option>
+                        <option {% if request.query_params.filter == 'Indicator_Combo' %}selected="selected"{% endif %}
+                            value="Indicator_Combo">Indicator Combo</option>
+                        <option {% if request.query_params.filter == 'TMA_Bullish' %}selected="selected"{% endif %}
+                            value="TMA_Bullish">TMA Bullish</option>
+                        <option {% if request.query_params.filter == 'DMA_Bullish' %}selected="selected"{% endif %}
+                            value="DMA_Bullish">DMA Bullish</option>
+                        <option {% if request.query_params.filter == 'earnings_before_3w' %}selected="selected"{% endif %}
+                            value="earnings_before_3w">Earnings in 3 Weeks</option>
+                    </select>
+                </div>
+            </div>
+            <button class="medium ui button">
+                Filter
+            </button>
+        </form>
+    </div>
+    <a class="item">
+        <div class="ui purple horizontal label"> Updated: {{date}}</div>
+      </a>
+    <table id="data_tab" class="ui striped table">
+        <h1>{{request.query_params.filter}}</h1>
+        <thead>
+            <tr>
+            <th>Stock ID</th>
+            <th>Company</th>
+            <th>Ticker</th>
+            <th>Earnings date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for stock in stocks %}
+            <tr>   
+                <td>{{stock.id}}</td>
+                <td><a href="/stock/{{stock.symbol}}">{{stock.name}}</a></td>
+                <td>{{stock.symbol}}</td>
+                {% if indicator_values[stock.symbol] %}
+                    {% if indicator_values[stock.symbol].earnings_date %}
+                        <td>{{indicator_values[stock.symbol].earnings_date}}</td>
+                    {% else %}
+                        <td>N/A</td>
+                    {% endif %}
+                {% endif %}
+            </tr>
+            {% endfor %}
+        </tbody>
+        </table>
+        
+{% endblock %}

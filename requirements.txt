@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+numpy
+pandas
+jinja2
+pandas
+python-multipart
+alpaca_trade_api
+tulipy
+yahoo_earnings_calendar
+aiofiles
