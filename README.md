@@ -1,4 +1,4 @@
-# StockAPP
+# StockScreener
 
 A full-stack web application that uses technical analysis and more to screen stocks for a nice view on a table.
 
