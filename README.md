@@ -1,4 +1,4 @@
-# NOTE: This repo has been depreprecated, Alpaca API has been updated to work differently.
+# NOTE: This repo has been deprecated, Alpaca API has been updated to work differently.
 # StockScreener
 
 A full-stack web application that uses technical analysis and more to screen stocks for a nice view on a table.
